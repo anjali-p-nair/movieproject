@@ -32,6 +32,16 @@ def add_movie(request):
         movie.save()
 
 
+def add_new(request):
+    if request.method=="POST":
+        name=request.POST.get('name')
+        desc=request.POST.get('desc')
+        year=request.POST.get('year')
+        img=request.FILES['img']
+        movie=Movie(name=name,desc=desc,year=year,img=img)
+        movie.save()
+        return redirect('/')
+    return render(request,'addmovie.html')
 
     return render(request,'add.html')
 
